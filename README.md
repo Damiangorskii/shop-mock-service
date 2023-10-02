@@ -1,0 +1,1 @@
+# shop-mock-service
