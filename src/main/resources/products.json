@@ -1,11 +1,9 @@
 [
   {
-    "id": "1",
     "name": "Product 1",
     "description": "Description 1",
     "price": 100.0,
     "manufacturer": {
-      "id": "1",
       "name": "Manufacturer 1",
       "address": "Address 1",
       "contact": "Contact 1"
@@ -16,8 +14,7 @@
     "updatedAt": "2023-10-01T10:10:10",
     "reviews": [
       {
-        "id": "1",
-        "content": "Review 1",
+        "comment": "Review 1",
         "rating": 5
       }
     ]
