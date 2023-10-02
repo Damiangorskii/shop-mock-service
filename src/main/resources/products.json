@@ -1,0 +1,25 @@
+[
+  {
+    "id": "1",
+    "name": "Product 1",
+    "description": "Description 1",
+    "price": 100.0,
+    "manufacturer": {
+      "id": "1",
+      "name": "Manufacturer 1",
+      "address": "Address 1",
+      "contact": "Contact 1"
+    },
+    "categories": ["ELECTRONICS"],
+    "stockQuantity": 10,
+    "createdAt": "2023-10-01T10:10:10",
+    "updatedAt": "2023-10-01T10:10:10",
+    "reviews": [
+      {
+        "id": "1",
+        "content": "Review 1",
+        "rating": 5
+      }
+    ]
+  }
+]
