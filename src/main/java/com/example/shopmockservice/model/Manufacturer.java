@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.UUID;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -15,7 +17,7 @@ import lombok.ToString;
 @ToString
 public class Manufacturer {
 
-    private String id;
+    private UUID id;
     private String name;
     private String address;
     private String contact;
