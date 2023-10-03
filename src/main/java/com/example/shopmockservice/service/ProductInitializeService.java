@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import jakarta.annotation.PostConstruct;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import java.io.InputStream;
 import java.util.Collections;
 import java.util.List;
 
+@Getter
 @Service
 @Slf4j
 class ProductInitializeService {
@@ -34,7 +36,4 @@ class ProductInitializeService {
         }
     }
 
-    public List<Product> getProducts() {
-        return products;
-    }
 }
