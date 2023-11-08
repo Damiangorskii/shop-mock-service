@@ -17,7 +17,7 @@ public class ProductService {
 
     public Flux<Product> getProducts() {
         return Flux.fromIterable(productInitializeService.getProducts())
-                .delaySubscription(Mono.delay(Duration.ofMillis(ThreadLocalRandom.current().nextLong(500, 1001))));
+                .delaySubscription(Mono.delay(Duration.ofMillis(ThreadLocalRandom.current().nextLong(200, 250))));
     }
 
 }
