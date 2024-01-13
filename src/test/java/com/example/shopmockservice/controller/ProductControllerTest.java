@@ -44,5 +44,47 @@ public class ProductControllerTest {
                 .expectHeader().contentType(MediaType.APPLICATION_JSON)
                 .expectBodyList(Product.class).hasSize(2);
     }
+
+    @Test
+    void should_return_all_games() {
+        Product product1 = Product.builder().id(UUID.randomUUID()).name("Product one").build();
+        Product product2 = Product.builder().id(UUID.randomUUID()).name("Product two").build();
+        when(productService.getGameProducts()).thenReturn(Flux.just(product1, product2));
+
+        webTestClient.get().uri("/products/external/games")
+                .accept(MediaType.APPLICATION_JSON)
+                .exchange()
+                .expectStatus().isOk()
+                .expectHeader().contentType(MediaType.APPLICATION_JSON)
+                .expectBodyList(Product.class).hasSize(2);
+    }
+
+    @Test
+    void should_return_all_hardwares() {
+        Product product1 = Product.builder().id(UUID.randomUUID()).name("Product one").build();
+        Product product2 = Product.builder().id(UUID.randomUUID()).name("Product two").build();
+        when(productService.getHardwareProducts()).thenReturn(Flux.just(product1, product2));
+
+        webTestClient.get().uri("/products/external/hardware")
+                .accept(MediaType.APPLICATION_JSON)
+                .exchange()
+                .expectStatus().isOk()
+                .expectHeader().contentType(MediaType.APPLICATION_JSON)
+                .expectBodyList(Product.class).hasSize(2);
+    }
+
+    @Test
+    void should_return_all_software_tools() {
+        Product product1 = Product.builder().id(UUID.randomUUID()).name("Product one").build();
+        Product product2 = Product.builder().id(UUID.randomUUID()).name("Product two").build();
+        when(productService.getSoftwareToolProducts()).thenReturn(Flux.just(product1, product2));
+
+        webTestClient.get().uri("/products/external/software-tools")
+                .accept(MediaType.APPLICATION_JSON)
+                .exchange()
+                .expectStatus().isOk()
+                .expectHeader().contentType(MediaType.APPLICATION_JSON)
+                .expectBodyList(Product.class).hasSize(2);
+    }
 }
 

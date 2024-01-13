@@ -20,11 +20,14 @@ import java.util.List;
 class ProductInitializeService {
 
     private List<Product> products;
+    private List<Product> gameProducts;
+    private List<Product> hardwareProducts;
+    private List<Product> softwareToolProducts;
 
     @PostConstruct
-    public void init() {
+    public void initProducts() {
         try {
-            log.info("Reading the data from file");
+            log.info("Reading the data from products.json");
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.registerModule(new JavaTimeModule());
             InputStream inputStream = new ClassPathResource("products.json").getInputStream();
@@ -33,6 +36,51 @@ class ProductInitializeService {
         } catch (Exception e) {
             e.printStackTrace();
             products = Collections.emptyList();
+        }
+    }
+
+    @PostConstruct
+    public void initGames() {
+        try {
+            log.info("Reading the data from product-external-games.json");
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.registerModule(new JavaTimeModule());
+            InputStream inputStream = new ClassPathResource("products-external-games.json").getInputStream();
+            gameProducts = objectMapper.readValue(inputStream, new TypeReference<>() {
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+            gameProducts = Collections.emptyList();
+        }
+    }
+
+    @PostConstruct
+    public void initHardware() {
+        try {
+            log.info("Reading the data from product-external-hardware.json");
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.registerModule(new JavaTimeModule());
+            InputStream inputStream = new ClassPathResource("products-external-hardware.json").getInputStream();
+            hardwareProducts = objectMapper.readValue(inputStream, new TypeReference<>() {
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+            hardwareProducts = Collections.emptyList();
+        }
+    }
+
+    @PostConstruct
+    public void initSoftwareTools() {
+        try {
+            log.info("Reading the data from product-external-software-tools.json");
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.registerModule(new JavaTimeModule());
+            InputStream inputStream = new ClassPathResource("products-external-software-tools.json").getInputStream();
+            softwareToolProducts = objectMapper.readValue(inputStream, new TypeReference<>() {
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+            softwareToolProducts = Collections.emptyList();
         }
     }
 

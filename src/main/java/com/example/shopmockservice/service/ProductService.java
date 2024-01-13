@@ -19,4 +19,19 @@ public class ProductService {
                 .delaySubscription(Mono.delay(Duration.ofMillis(200)));
     }
 
+    public Flux<Product> getGameProducts() {
+        return Flux.fromIterable(productInitializeService.getGameProducts())
+                .delaySubscription(Mono.delay(Duration.ofMillis(250)));
+    }
+
+    public Flux<Product> getHardwareProducts() {
+        return Flux.fromIterable(productInitializeService.getHardwareProducts())
+                .delaySubscription(Mono.delay(Duration.ofMillis(230)));
+    }
+
+    public Flux<Product> getSoftwareToolProducts() {
+        return Flux.fromIterable(productInitializeService.getSoftwareToolProducts())
+                .delaySubscription(Mono.delay(Duration.ofMillis(215)));
+    }
+
 }

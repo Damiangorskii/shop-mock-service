@@ -19,7 +19,7 @@ import java.util.UUID;
 
 import static org.mockito.Mockito.when;
 
-public class ProductServiceTest {
+class ProductServiceTest {
 
     @Mock
     private ProductInitializeService productInitializeService;
@@ -66,7 +66,7 @@ public class ProductServiceTest {
     }
 
     @Test
-    public void should_return_products() {
+    void should_return_products() {
         List<Product> mockProducts = List.of(
                 createMockedProduct("Product one", BigDecimal.valueOf(300.0)),
                 createMockedProduct("Product two", BigDecimal.valueOf(250.0)),
@@ -84,10 +84,94 @@ public class ProductServiceTest {
     }
 
     @Test
-    public void should_return_empty_flux_when_no_products() {
+    void should_return_empty_flux_when_no_products() {
         when(productInitializeService.getProducts()).thenReturn(List.of());
 
         Flux<Product> result = productService.getProducts();
+
+        StepVerifier.create(result)
+                .verifyComplete();
+    }
+
+    @Test
+    void should_return_game_products() {
+        List<Product> mockProducts = List.of(
+                createMockedProduct("Product one", BigDecimal.valueOf(300.0)),
+                createMockedProduct("Product two", BigDecimal.valueOf(250.0)),
+                createMockedProduct("Product three", BigDecimal.valueOf(350.0))
+        );
+        when(productInitializeService.getGameProducts()).thenReturn(mockProducts);
+
+        Flux<Product> result = productService.getGameProducts();
+
+        StepVerifier.create(result)
+                .expectNextMatches(product -> "Product one".equals(product.getName()))
+                .expectNextMatches(product -> "Product two".equals(product.getName()))
+                .expectNextMatches(product -> "Product three".equals(product.getName()))
+                .verifyComplete();
+    }
+
+    @Test
+    void should_return_empty_flux_when_no_game_products() {
+        when(productInitializeService.getGameProducts()).thenReturn(List.of());
+
+        Flux<Product> result = productService.getGameProducts();
+
+        StepVerifier.create(result)
+                .verifyComplete();
+    }
+
+    @Test
+    void should_return_hardware_products() {
+        List<Product> mockProducts = List.of(
+                createMockedProduct("Product one", BigDecimal.valueOf(300.0)),
+                createMockedProduct("Product two", BigDecimal.valueOf(250.0)),
+                createMockedProduct("Product three", BigDecimal.valueOf(350.0))
+        );
+        when(productInitializeService.getHardwareProducts()).thenReturn(mockProducts);
+
+        Flux<Product> result = productService.getHardwareProducts();
+
+        StepVerifier.create(result)
+                .expectNextMatches(product -> "Product one".equals(product.getName()))
+                .expectNextMatches(product -> "Product two".equals(product.getName()))
+                .expectNextMatches(product -> "Product three".equals(product.getName()))
+                .verifyComplete();
+    }
+
+    @Test
+    void should_return_empty_flux_when_no_hardware_products() {
+        when(productInitializeService.getHardwareProducts()).thenReturn(List.of());
+
+        Flux<Product> result = productService.getHardwareProducts();
+
+        StepVerifier.create(result)
+                .verifyComplete();
+    }
+
+    @Test
+    void should_return_software_tool_products() {
+        List<Product> mockProducts = List.of(
+                createMockedProduct("Product one", BigDecimal.valueOf(300.0)),
+                createMockedProduct("Product two", BigDecimal.valueOf(250.0)),
+                createMockedProduct("Product three", BigDecimal.valueOf(350.0))
+        );
+        when(productInitializeService.getSoftwareToolProducts()).thenReturn(mockProducts);
+
+        Flux<Product> result = productService.getSoftwareToolProducts();
+
+        StepVerifier.create(result)
+                .expectNextMatches(product -> "Product one".equals(product.getName()))
+                .expectNextMatches(product -> "Product two".equals(product.getName()))
+                .expectNextMatches(product -> "Product three".equals(product.getName()))
+                .verifyComplete();
+    }
+
+    @Test
+    void should_return_empty_flux_when_no_software_tool_products() {
+        when(productInitializeService.getSoftwareToolProducts()).thenReturn(List.of());
+
+        Flux<Product> result = productService.getSoftwareToolProducts();
 
         StepVerifier.create(result)
                 .verifyComplete();

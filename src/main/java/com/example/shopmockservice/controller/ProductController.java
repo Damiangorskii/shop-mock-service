@@ -19,4 +19,19 @@ public class ProductController {
     public Flux<Product> getAllProducts() {
         return productService.getProducts();
     }
+
+    @GetMapping("/external/games")
+    public Flux<Product> getExternalGameProducts() {
+        return productService.getGameProducts();
+    }
+
+    @GetMapping("/external/hardware")
+    public Flux<Product> getExternalHardwareProducts() {
+        return productService.getHardwareProducts();
+    }
+
+    @GetMapping("/external/software-tools")
+    public Flux<Product> getExternalSoftwareToolProducts() {
+        return productService.getSoftwareToolProducts();
+    }
 }
